@@ -1,4 +1,7 @@
-<<<<<<< HEAD
+# udemy-react-testing
+Udemy course - react-redux - testing lessons
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -67,7 +70,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-=======
-# udemy-react-testing
-Udemy course - react-redux - testing lessons
->>>>>>> 795fa0a8038cc99675279b12ad058440b046131e
