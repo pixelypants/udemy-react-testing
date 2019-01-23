@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { defaultCoreCipherList } from 'constants';
-
+import React, { Component, useImperativeMethods } from 'react';
+import { connect } from "react-redux";
+import * as commentActions from "../reducers/comments/actions";
 class CommentBox extends Component {
     state = { comment: '' };
 
@@ -30,4 +30,4 @@ class CommentBox extends Component {
     }
 }
 
-export default CommentBox;
+export default connect(null, commentActions)(CommentBox);
