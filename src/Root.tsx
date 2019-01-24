@@ -1,9 +1,9 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import reducers from "./reducers";
+import reducers from "./store";
 
-export default (props) => {
+export default (props: any) => {
     return (
         <Provider store={createStore(reducers, {})}>
             {props.children}

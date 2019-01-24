@@ -1,6 +1,6 @@
 import React, { Component, useImperativeMethods } from 'react';
 import { connect } from "react-redux";
-import * as commentActions from "../reducers/comments/actions";
+import * as commentActions from "../store/comments/actions";
 class CommentBox extends Component {
     state = { comment: '' };
 
