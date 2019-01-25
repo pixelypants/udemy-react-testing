@@ -1,7 +1,15 @@
 import React, { Component, useImperativeMethods } from 'react';
 import { connect } from "react-redux";
-import * as commentActions from "../store/comments/actions";
-class CommentBox extends Component {
+import { ActionType, getType, StateType } from 'typesafe-actions';
+
+import * as comments from '../store/comments/actions';
+// export type CommentActions = ActionType<typeof comments>;
+
+export interface CommentBoxProps {
+    SaveComment: typeof comments.SaveComment;
+}
+
+class CommentBox extends Component<CommentBoxProps> {
     state = { comment: '' };
 
     handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -10,11 +18,11 @@ class CommentBox extends Component {
 
     handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
-        // TODO: Call an action creator
-        // and save the comment using redux
-
-        this.setState({ comment: '' })
+        let comment = this.state.comment;
+        if (comment != '') {
+            this.props.SaveComment(this.state.comment);
+            this.setState({ comment: '' })
+        }
     }
 
     render() {
@@ -30,4 +38,4 @@ class CommentBox extends Component {
     }
 }
 
-export default connect(null, commentActions)(CommentBox);
+export default connect(null, comments)(CommentBox);
