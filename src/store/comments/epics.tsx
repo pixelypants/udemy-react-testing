@@ -1,4 +1,5 @@
 import { ajax } from 'rxjs/ajax';
+import Axios from "axios";
 import { Observable, of } from 'rxjs';
 import { map, switchMap, catchError, filter, tap, flatMap, mergeMap, take } from 'rxjs/operators';
 import { ActionType, getType, StateType, isOfType } from 'typesafe-actions';
@@ -38,3 +39,6 @@ export const fetchCommentsEpic: Epic<CommentActions> = (action$) =>
             map(comments => FetchCommentSuccess(comments)),
             catchError((error: Error) => of(FetchCommentFail(error.message)))
         )
+
+
+// https://github.com/redux-observable/redux-observable/blob/master/docs/recipes/InjectingDependenciesIntoEpics.md
