@@ -38,38 +38,3 @@ export const fetchCommentsEpic: Epic<CommentActions> = (action$) =>
             map(comments => FetchCommentSuccess(comments)),
             catchError((error: Error) => of(FetchCommentFail(error.message)))
         )
-
-
-// export const fetchCommentsEpic: Epic<CommentActions> = (action$) =>
-//     action$.pipe(
-//         filter(isOfType(FETCH_COMMENT)),
-//         switchMap((action: CommentActions) => (
-//             ajax
-//                 .getJSON(url)
-//                 .pipe(
-//                     tap(comment => comment),
-
-//                     // switchMap((comments) => FetchCommentSuccess(comments))
-//                 )
-//         ))
-//             .map((comments: string[]) => FetchCommentSuccess(comments))
-//             .catchError((error: Error) => of(FetchCommentFail(error.message)))
-
-
-        //     fetchProducts(): Observable < Product[] > {
-        //     return this.http.get("http://examples.com/myData")
-        //         .map((response) => {
-        //             return response.json().products;
-        //         })
-        //         .switchMap(productArray => {
-        //             return Observable.from(productArray);
-        //         })
-        //         .map((productData: any) => {
-        //             return new Product(
-        //                 productData.id,
-        //                 productData.name,
-        //                 productData.materials
-        //             );
-        //         })
-        //         .toArray();
-        // }
