@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import { ActionType, getType, StateType } from 'typesafe-actions';
 
 import * as comments from '../store/comments/actions';
-// export type CommentActions = ActionType<typeof comments>;
 
 export interface CommentBoxProps {
     SaveComment: typeof comments.SaveComment;
+    FetchComments: typeof comments.FetchComments;
 }
 
 class CommentBox extends Component<CommentBoxProps> {
@@ -27,13 +27,16 @@ class CommentBox extends Component<CommentBoxProps> {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <h4>Add a Comment</h4>
-                <textarea onChange={this.handleChange} value={this.state.comment} />
-                <div>
-                    <button>Submit Comment</button>
-                </div>
-            </form>
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <h4>Add a Comment</h4>
+                    <textarea onChange={this.handleChange} value={this.state.comment} />
+                    <div>
+                        <button>Submit Comment</button>
+                    </div>
+                </form>
+                <button onClick={this.props.FetchComments}>Fetch Comments</button>
+            </div>
         )
     }
 }
