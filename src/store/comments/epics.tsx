@@ -1,5 +1,4 @@
 import { ajax } from 'rxjs/ajax';
-import Axios from "axios";
 import { Observable, of } from 'rxjs';
 import { map, switchMap, catchError, filter, tap, flatMap, mergeMap, take } from 'rxjs/operators';
 import { ActionType, getType, StateType, isOfType } from 'typesafe-actions';
@@ -12,26 +11,17 @@ import {
     FetchCommentFail,
     FetchComments
 } from "./actions";
-
+import { Comment } from "./models/comentModel";
+import { fetchComments } from "../../services";
 import * as comments from './actions';
 export type CommentActions = ActionType<typeof comments>;
 
-const url = 'https://jsonplaceholder.typicode.com/comments';
-export interface Comment {
-    postId: number;
-    id: number;
-    name: string;
-    email: string;
-    body: string;
-}
-
-export const fetchCommentsEpic: Epic<CommentActions> = (action$) =>
+export const fetchCommentsEpic: Epic<CommentActions> = (action$, store, { api }) =>
     action$
         .pipe(
             filter(isOfType(FETCH_COMMENT)),
             switchMap(() => {
-                return ajax
-                    .getJSON<Comment[]>(url)
+                return fetchComments()
                     .pipe(
                         map((comments: Comment[]) =>
                             comments.map((comment: Comment) => comment.name)))
@@ -40,5 +30,21 @@ export const fetchCommentsEpic: Epic<CommentActions> = (action$) =>
             catchError((error: Error) => of(FetchCommentFail(error.message)))
         )
 
+// export const fetchCommentsEpic: Epic<CommentActions> = (action$) =>
+//     action$
+//         .pipe(
+//             filter(isOfType(FETCH_COMMENT)),
+//             switchMap(() => {
+//                 return ajax
+//                     .getJSON<Comment[]>(url)
+//                     .pipe(
+//                         map((comments: Comment[]) =>
+//                             comments.map((comment: Comment) => comment.name)))
+//             }),
+//             map(comments => FetchCommentSuccess(comments)),
+//             catchError((error: Error) => of(FetchCommentFail(error.message)))
+//         )
+
 
 // https://github.com/redux-observable/redux-observable/blob/master/docs/recipes/InjectingDependenciesIntoEpics.md
+// https://mikebridge.github.io/articles/typescript-redux-observable-epic-test/
