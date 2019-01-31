@@ -30,21 +30,5 @@ export const fetchCommentsEpic: Epic<CommentActions> = (action$, store, { api })
             catchError((error: Error) => of(FetchCommentFail(error.message)))
         )
 
-// export const fetchCommentsEpic: Epic<CommentActions> = (action$) =>
-//     action$
-//         .pipe(
-//             filter(isOfType(FETCH_COMMENT)),
-//             switchMap(() => {
-//                 return ajax
-//                     .getJSON<Comment[]>(url)
-//                     .pipe(
-//                         map((comments: Comment[]) =>
-//                             comments.map((comment: Comment) => comment.name)))
-//             }),
-//             map(comments => FetchCommentSuccess(comments)),
-//             catchError((error: Error) => of(FetchCommentFail(error.message)))
-//         )
-
-
 // https://github.com/redux-observable/redux-observable/blob/master/docs/recipes/InjectingDependenciesIntoEpics.md
 // https://mikebridge.github.io/articles/typescript-redux-observable-epic-test/

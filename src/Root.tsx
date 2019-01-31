@@ -18,3 +18,5 @@ export default ({ children, initialState = {} }: any) => {
         </Provider>
     )
 }
+
+// https://redux-observable.js.org/docs/recipes/InjectingDependenciesIntoEpics.html
