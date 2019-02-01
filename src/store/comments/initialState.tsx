@@ -1,3 +1,4 @@
-export default {
-    // comments: []
+export interface CommentsState {
+    isMocked: boolean,
+    comments: string[],
 }

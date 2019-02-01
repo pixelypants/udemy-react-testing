@@ -1,5 +1,3 @@
-import { Action } from "redux";
-import axios from "axios";
 import { action, createAction, createAsyncAction } from 'typesafe-actions';
 
 export const SAVE_COMMENT = 'comments/SAVE_COMMENT';

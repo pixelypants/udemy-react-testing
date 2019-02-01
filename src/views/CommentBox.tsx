@@ -41,4 +41,8 @@ class CommentBox extends Component<CommentBoxProps> {
     }
 }
 
+function mapStateToProps(state: any) {
+    return { comments: state.commentsState.isMocked };
+}
+
 export default connect(null, comments)(CommentBox);

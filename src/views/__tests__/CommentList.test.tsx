@@ -2,13 +2,16 @@ import React from "react";
 import { mount, ReactWrapper } from "enzyme";
 import Root from "../../Root";
 import CommentList from "../CommentList";
+import { initState } from "../../store/comments/reducer";
 
 let wrapped: ReactWrapper;
 
 beforeEach(() => {
     const initialState = {
-        comments: ['Comment 1', 'Comment 2']
+        commentsState: initState
     }
+    initialState.commentsState.comments = ['Comment 1', 'Comment 2']
+
     wrapped = mount(
         <Root initialState={initialState}>
             <CommentList />

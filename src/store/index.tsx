@@ -6,5 +6,5 @@ import { fetchCommentsEpic } from "./comments/epics";
 export const rootEpic = combineEpics(fetchCommentsEpic);
 
 export default combineReducers({
-    comments: commentReducer
+    commentsState: commentReducer
 })
