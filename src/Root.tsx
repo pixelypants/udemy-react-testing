@@ -8,8 +8,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 export default ({ children, initialState = {} }: any) => {
 
-    const mocked = false;
-
     const epicMiddleware = createEpicMiddleware({
         dependencies: { api: api }
     });

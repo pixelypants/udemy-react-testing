@@ -1,16 +1,33 @@
 import React, { Component, useImperativeMethods } from 'react';
 import { connect } from "react-redux";
 import { ActionType, getType, StateType } from 'typesafe-actions';
+import { History } from "history";
 
 import * as comments from '../store/comments/actions';
 
 export interface CommentBoxProps {
+    isLoggedIn: boolean;
+    history: History
     SaveComment: typeof comments.SaveComment;
     FetchComments: typeof comments.FetchComments;
 }
 
 class CommentBox extends Component<CommentBoxProps> {
     state = { comment: '' };
+
+    componentDidMount() {
+        this.isAuthenticated();
+    }
+
+    componentDidUpdate() {
+        this.isAuthenticated();
+    }
+
+    isAuthenticated() {
+        if (!this.props.isLoggedIn) {
+            this.props.history.push('/');
+        }
+    }
 
     handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         this.setState({ comment: event.target.value })
@@ -42,7 +59,7 @@ class CommentBox extends Component<CommentBoxProps> {
 }
 
 function mapStateToProps(state: any) {
-    return { comments: state.commentsState.isMocked };
+    return { isLoggedIn: state.auth.isLoggedIn };
 }
 
-export default connect(null, comments)(CommentBox);
+export default connect(mapStateToProps, comments)(CommentBox);
